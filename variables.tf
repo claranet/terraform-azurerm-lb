@@ -105,3 +105,9 @@ variable "nat_protocol" {
   type        = string
   default     = "All"
 }
+
+variable "lb_frontend_ip_configurations" {
+  description = "`frontend_ip_configuration` blocks as documented here: https://www.terraform.io/docs/providers/azurerm/r/lb.html#frontend_ip_configuration"
+  type        = map(any)
+  default     = {}
+}

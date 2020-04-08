@@ -26,6 +26,19 @@ resource "azurerm_lb" "lb" {
     }
   }
 
+  dynamic "frontend_ip_configuration" {
+    for_each = var.lb_frontend_ip_configurations
+    content {
+      name = each.key
+
+      subnet_id                     = lookup(each.value, "subnet_id", null)
+      private_ip_address            = lookup(each.value, "private_ip_address", null)
+      private_ip_address_allocation = lookup(each.value, "private_ip_address_allocation", "Dynamic")
+      zones                         = lookup(each.value, "zones", null)
+    }
+  }
+  #      private_ip_address_version    = lookup(each.value, "private_ip_address_version", "IPv4")
+
   tags = merge(local.default_tags, var.extra_tags, var.lb_extra_tags)
 }
 
