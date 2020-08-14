@@ -29,12 +29,12 @@ resource "azurerm_lb" "lb" {
   dynamic "frontend_ip_configuration" {
     for_each = var.lb_frontend_ip_configurations
     content {
-      name = each.key
+      name = frontend_ip_configuration.key
 
-      subnet_id                     = lookup(each.value, "subnet_id", null)
-      private_ip_address            = lookup(each.value, "private_ip_address", null)
-      private_ip_address_allocation = lookup(each.value, "private_ip_address_allocation", "Dynamic")
-      zones                         = lookup(each.value, "zones", null)
+      subnet_id                     = lookup(frontend_ip_configuration.value, "subnet_id", null)
+      private_ip_address            = lookup(frontend_ip_configuration.value, "private_ip_address", null)
+      private_ip_address_allocation = lookup(frontend_ip_configuration.value, "private_ip_address_allocation", "Dynamic")
+      zones                         = tolist(lookup(frontend_ip_configuration.value, "zones", null))
     }
   }
   #      private_ip_address_version    = lookup(each.value, "private_ip_address_version", "IPv4")
