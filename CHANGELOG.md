@@ -1,4 +1,4 @@
-# v2.0.1 - Unreleased
+# v2.0.1/v3.0.1 - 2020-08-24
 
 Fixed
   * AZ-258: Fix each.value Error on `lb_frontend_ip_configurations`
