@@ -7,7 +7,8 @@ with possible Public IP address and [basic NAT](https://docs.microsoft.com/en-us
 ## Version compatibility
 
 | Module version | Terraform version | AzureRM version |
-|----------------|-------------------| --------------- |
+| -------------- | ----------------- | --------------- |
+| >= 5.x.x       | 0.15.x & 1.0.x    | >= 2.0          |
 | >= 4.x.x       | 0.13.x            | >= 2.0          |
 | >= 3.x.x       | 0.12.x            | >= 2.0          |
 | >= 2.x.x       | 0.12.x            | < 2.0           |
@@ -55,6 +56,26 @@ module "lb" {
 }
 ```
 
+<!-- BEGIN_TF_DOCS -->
+## Providers
+
+| Name | Version |
+|------|---------|
+| azurerm | >= 1.36 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [azurerm_lb.lb](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb) | resource |
+| [azurerm_lb_backend_address_pool.default_pool](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb_backend_address_pool) | resource |
+| [azurerm_lb_outbound_rule.outbound](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb_outbound_rule) | resource |
+| [azurerm_public_ip.ip](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip) | resource |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -99,9 +120,7 @@ module "lb" {
 | pubip\_fqdn | FQDN of the Public IP address if any |
 | pubip\_id | Id of the Public IP address if any |
 | pubip\_ip\_address | IP address of the Public IP address if any |
-
+<!-- END_TF_DOCS -->
 ## Related documentation
-
-Terraform resource documentation: [terraform.io/docs/providers/azurerm/r/lb.html](https://www.terraform.io/docs/providers/azurerm/r/lb.html)
 
 Microsoft Azure documentation: [docs.microsoft.com/en-us/azure/load-balancer/](https://docs.microsoft.com/en-us/azure/load-balancer/)
