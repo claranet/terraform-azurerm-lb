@@ -5,7 +5,7 @@ This Terraform module creates an [Azure Load Balancer](https://docs.microsoft.co
 with possible Public IP address and [basic NAT](https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-rules-overview). 
 
 <!-- BEGIN_TF_DOCS -->
-## Global versionning rule for Claranet Azure modules
+## Global versioning rule for Claranet Azure modules
 
 | Module version | Terraform version | AzureRM version |
 | -------------- | ----------------- | --------------- |
