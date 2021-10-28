@@ -3,6 +3,9 @@
 Changed
   * AZ-572: Revamp examples and improve CI
 
+Added
+  * AZ-591: Export `frontend_ip_configuration` attribute as an output
+
 # v3.1.1/v4.0.1 - 2021-08-27
 
 Changed

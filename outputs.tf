@@ -72,3 +72,8 @@ output "outbound_rule_allocated_outbound_ports" {
   description = "Number of allocated oubound ports of the default outbound rule if any"
   value       = join("", azurerm_lb_outbound_rule.outbound.*.allocated_outbound_ports)
 }
+
+output "frontend_ip_configuration" {
+  description = "LoadBalancer's frontend ip configuration as described here https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb#frontend_ip_configuration"
+  value       = azurerm_lb.lb.frontend_ip_configuration
+}
