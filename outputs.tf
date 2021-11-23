@@ -74,6 +74,6 @@ output "outbound_rule_allocated_outbound_ports" {
 }
 
 output "frontend_ip_configuration" {
-  description = "LoadBalancer's frontend ip configuration as described here https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb#frontend_ip_configuration"
+  description = "Load Balancer's frontend IP configuration as described here https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb#frontend_ip_configuration"
   value       = azurerm_lb.lb.frontend_ip_configuration
 }
