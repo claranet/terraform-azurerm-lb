@@ -109,6 +109,7 @@ No modules.
 | backend\_address\_pool\_ip\_configurations | IP configurations of the associated default backend address pool |
 | backend\_address\_pool\_load\_balancing\_rules | Load balancing rules of the associated default backend address pool |
 | backend\_address\_pool\_name | Name of the associated default backend address pool |
+| frontend\_ip\_configuration | Load Balancer's frontend IP configuration as described here https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb#frontend_ip_configuration |
 | lb\_id | Id of the Load Balancer |
 | lb\_name | Name of the Load Balancer |
 | lb\_private\_ip\_address | Private IP address of the Load Balancer |
