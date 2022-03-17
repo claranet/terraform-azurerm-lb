@@ -85,6 +85,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | allocate\_public\_ip | True to allocate a Public IP to the Load Balancer. | `bool` | `false` | no |
 | client\_name | Client name/account used in naming | `string` | n/a | yes |
+| default\_tags\_enabled | Option to enable or disable default tags. | `bool` | `true` | no |
 | enable\_nat | True to enable NAT through Load Balancer outbound rules. | `bool` | `false` | no |
 | environment | Project environment | `string` | n/a | yes |
 | extra\_tags | Extra tags to add on all resources. | `map(string)` | `{}` | no |
