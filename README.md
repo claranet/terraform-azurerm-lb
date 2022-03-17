@@ -61,6 +61,7 @@ module "lb" {
 
 | Name | Version |
 |------|---------|
+| azurecaf | ~> 1.1 |
 | azurerm | >= 1.36 |
 
 ## Modules
@@ -71,6 +72,8 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [azurecaf_name.lb](https://registry.terraform.io/providers/aztfmod/azurecaf/latest/docs/resources/name) | resource |
+| [azurecaf_name.pubip](https://registry.terraform.io/providers/aztfmod/azurecaf/latest/docs/resources/name) | resource |
 | [azurerm_lb.lb](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb) | resource |
 | [azurerm_lb_backend_address_pool.default_pool](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb_backend_address_pool) | resource |
 | [azurerm_lb_outbound_rule.outbound](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb_outbound_rule) | resource |
@@ -93,6 +96,7 @@ No modules.
 | location | Azure location. | `string` | n/a | yes |
 | location\_short | Short string for Azure location. | `string` | n/a | yes |
 | name\_prefix | Optional prefix for the generated name | `string` | `""` | no |
+| name\_suffix | Optional suffix for the generated name | `string` | `""` | no |
 | nat\_allocated\_outbound\_ports | Number of allocated outbound ports for NAT. | `number` | `1024` | no |
 | nat\_protocol | Transport protocol to use for NAT. | `string` | `"All"` | no |
 | public\_ip\_allocation\_method | Allocation method for the Public IP address, can be `Static`, `Dynamic`. | `string` | `"Static"` | no |
@@ -100,6 +104,7 @@ No modules.
 | resource\_group\_name | Resource group name | `string` | n/a | yes |
 | sku\_name | The Name of the SKU used for this Load Balancer. Possible values are "Basic" and "Standard". | `string` | `"Standard"` | no |
 | stack | Project stack name | `string` | n/a | yes |
+| use\_caf\_naming | Use the Azure CAF naming provider to generate default resource name. `lb_custom_name` override this if set. Legacy default name is used if this is set to `false`. | `bool` | `true` | no |
 
 ## Outputs
 
