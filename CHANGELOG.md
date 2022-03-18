@@ -1,3 +1,12 @@
+# Unreleased
+
+Breaking
+  * AZ-515: Option to use Azure CAF naming provider to name resources
+  * AZ-515: Require Terraform 0.13+
+
+Added
+  * AZ-615: Add an option to enable or disable default tags
+
 # v4.1.0 - 2021-11-23
 
 Changed

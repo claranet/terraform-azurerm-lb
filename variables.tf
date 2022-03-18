@@ -34,42 +34,6 @@ variable "sku_name" {
   default     = "Standard"
 }
 
-variable "extra_tags" {
-  description = "Extra tags to add on all resources."
-  type        = map(string)
-  default     = {}
-}
-
-variable "lb_extra_tags" {
-  description = "Extra tags to add to the Load Balancer."
-  type        = map(string)
-  default     = {}
-}
-
-variable "ip_extra_tags" {
-  description = "Extra tags to add to the Public IP address."
-  type        = map(string)
-  default     = {}
-}
-
-variable "name_prefix" {
-  description = "Optional prefix for the generated name"
-  type        = string
-  default     = ""
-}
-
-variable "lb_custom_name" {
-  description = "Name of the Load Balancer, generated if not set."
-  type        = string
-  default     = ""
-}
-
-variable "ip_custom_name" {
-  description = "Name of the Public IP address, generated if not set."
-  type        = string
-  default     = ""
-}
-
 variable "allocate_public_ip" {
   description = "True to allocate a Public IP to the Load Balancer."
   type        = bool
