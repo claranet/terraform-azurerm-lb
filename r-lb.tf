@@ -43,16 +43,14 @@ resource "azurerm_lb" "lb" {
 }
 
 resource "azurerm_lb_backend_address_pool" "default_pool" {
-  loadbalancer_id     = azurerm_lb.lb.id
-  name                = "defautlBackendAddressPool"
-  resource_group_name = var.resource_group_name
+  loadbalancer_id = azurerm_lb.lb.id
+  name            = "defautlBackendAddressPool"
 }
 
 resource "azurerm_lb_outbound_rule" "outbound" {
   count = var.enable_nat ? 1 : 0
 
-  name                = "default"
-  resource_group_name = var.resource_group_name
+  name = "default"
 
   backend_address_pool_id  = azurerm_lb_backend_address_pool.default_pool.id
   loadbalancer_id          = azurerm_lb.lb.id

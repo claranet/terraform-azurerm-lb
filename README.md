@@ -62,7 +62,7 @@ module "lb" {
 | Name | Version |
 |------|---------|
 | azurecaf | ~> 1.1 |
-| azurerm | >= 1.36 |
+| azurerm | ~> 3.0 |
 
 ## Modules
 
