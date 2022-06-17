@@ -106,6 +106,7 @@ No modules.
 | sku\_name | The Name of the SKU used for this Load Balancer. Possible values are "Basic" and "Standard". | `string` | `"Standard"` | no |
 | stack | Project stack name | `string` | n/a | yes |
 | use\_caf\_naming | Use the Azure CAF naming provider to generate default resource name. `lb_custom_name` override this if set. Legacy default name is used if this is set to `false`. | `bool` | `true` | no |
+| zones | Specifies a list of Availability Zones in which the Public IP Address for this Load Balancer should be located. Also used as default for `frontend_ip_configuration` zones | `list(number)` | <pre>[<br>  1,<br>  2,<br>  3<br>]</pre> | no |
 
 ## Outputs
 

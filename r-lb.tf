@@ -8,6 +8,8 @@ resource "azurerm_public_ip" "ip" {
   sku               = var.public_ip_sku
   allocation_method = var.public_ip_allocation_method
 
+  zones = var.zones
+
   tags = merge(local.default_tags, var.extra_tags, var.ip_extra_tags)
 }
 
@@ -34,7 +36,7 @@ resource "azurerm_lb" "lb" {
       subnet_id                     = lookup(frontend_ip_configuration.value, "subnet_id", null)
       private_ip_address            = lookup(frontend_ip_configuration.value, "private_ip_address", null)
       private_ip_address_allocation = lookup(frontend_ip_configuration.value, "private_ip_address_allocation", "Dynamic")
-      zones                         = tolist(lookup(frontend_ip_configuration.value, "zones", null))
+      zones                         = lookup(frontend_ip_configuration.value, "zones", var.zones)
     }
   }
   #      private_ip_address_version    = lookup(each.value, "private_ip_address_version", "IPv4")
