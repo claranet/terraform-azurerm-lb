@@ -1,4 +1,4 @@
-# Unreleased
+# v6.0.1 - 2022-06-17
 
 Fixed
   * AZ-777: Add a new `zones` parameter to manage availability zones for both Public IP and LB frontend IP
