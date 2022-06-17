@@ -1,3 +1,8 @@
+Unreleased
+
+Fixed:
+  * AZ-777: Add a new `zones` parameter to manage availability zones for both Public IP and LB frontend IP
+
 # v6.0.0 - 2022-05-13
 
 Breaking
@@ -34,7 +39,7 @@ Updated
 
 Fixed
   * AZ-258: Fix each.value Error on `lb_frontend_ip_configurations`
-  
+
 # v2.0.0 - 2020-07-30
 
 Added

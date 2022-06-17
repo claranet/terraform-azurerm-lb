@@ -75,3 +75,9 @@ variable "lb_frontend_ip_configurations" {
   type        = map(any)
   default     = {}
 }
+
+variable "zones" {
+  description = "Specifies a list of Availability Zones in which the Public IP Address for this Load Balancer should be located. Also used as default for `frontend_ip_configuration` zones"
+  type        = list(number)
+  default     = [1, 2, 3]
+}
