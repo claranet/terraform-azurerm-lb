@@ -1,5 +1,5 @@
 resource "azurerm_public_ip" "ip" {
-  count = var.allocate_public_ip ? 1 : 0
+  for_each = toset(var.allocate_public_ip ? ["enabled"] : [])
 
   location            = var.location
   name                = local.ip_name
@@ -30,16 +30,22 @@ resource "azurerm_lb" "lb" {
 
   dynamic "frontend_ip_configuration" {
     for_each = var.lb_frontend_ip_configurations
-    content {
-      name = frontend_ip_configuration.key
+    iterator = fipconf
 
-      subnet_id                     = lookup(frontend_ip_configuration.value, "subnet_id", null)
-      private_ip_address            = lookup(frontend_ip_configuration.value, "private_ip_address", null)
-      private_ip_address_allocation = lookup(frontend_ip_configuration.value, "private_ip_address_allocation", "Dynamic")
-      zones                         = lookup(frontend_ip_configuration.value, "zones", var.zones)
+    content {
+      name = fipconf.key
+
+      subnet_id                     = fipconf.value.subnet_id
+      private_ip_address            = fipconf.value.private_ip_address
+      private_ip_address_allocation = fipconf.value.private_ip_address_allocation
+      private_ip_address_version    = fipconf.value.private_ip_address_version
+
+      public_ip_address_id = fipconf.value.public_ip_address_id
+      public_ip_prefix_id  = fipconf.value.public_ip_prefix_id
+
+      zones = fipconf.value.zones != null ? fipconf.value.zones : var.zones
     }
   }
-  #      private_ip_address_version    = lookup(each.value, "private_ip_address_version", "IPv4")
 
   tags = merge(local.default_tags, var.extra_tags, var.lb_extra_tags)
 }

@@ -63,7 +63,7 @@ module "lb" {
 | Name | Version |
 |------|---------|
 | azurecaf | ~> 1.1 |
-| azurerm | ~> 3.0 |
+| azurerm | ~> 3.22 |
 
 ## Modules
 
@@ -94,7 +94,7 @@ No modules.
 | ip\_extra\_tags | Extra tags to add to the Public IP address. | `map(string)` | `{}` | no |
 | lb\_custom\_name | Name of the Load Balancer, generated if not set. | `string` | `""` | no |
 | lb\_extra\_tags | Extra tags to add to the Load Balancer. | `map(string)` | `{}` | no |
-| lb\_frontend\_ip\_configurations | `frontend_ip_configuration` blocks as documented here: https://www.terraform.io/docs/providers/azurerm/r/lb.html#frontend_ip_configuration | `map(any)` | `{}` | no |
+| lb\_frontend\_ip\_configurations | `frontend_ip_configuration` blocks as documented here: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb#frontend_ip_configuration. | <pre>map(object({<br>    subnet_id = string<br><br>    zones = optional(list(number))<br><br>    private_ip_address            = optional(string)<br>    private_ip_address_allocation = optional(string, "Dynamic")<br>    private_ip_address_version    = optional(string, "IPv4")<br><br>    public_ip_address_id = optional(string)<br>    public_ip_prefix_id  = optional(string)<br><br>    gateway_load_balancer_frontend_ip_configuration_id = optional(string)<br>  }))</pre> | `{}` | no |
 | location | Azure location. | `string` | n/a | yes |
 | location\_short | Short string for Azure location. | `string` | n/a | yes |
 | name\_prefix | Optional prefix for the generated name | `string` | `""` | no |

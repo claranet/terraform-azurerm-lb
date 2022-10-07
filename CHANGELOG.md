@@ -1,3 +1,11 @@
+# Unreleased
+
+Breaking
+  * AZ-840: Require Terraform 1.3+
+
+Changed
+  * AZ-874: Refactor variables types
+
 # v6.0.1 - 2022-06-17
 
 Fixed
