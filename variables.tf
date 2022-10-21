@@ -71,9 +71,22 @@ variable "nat_protocol" {
 }
 
 variable "lb_frontend_ip_configurations" {
-  description = "`frontend_ip_configuration` blocks as documented here: https://www.terraform.io/docs/providers/azurerm/r/lb.html#frontend_ip_configuration"
-  type        = map(any)
-  default     = {}
+  description = "`frontend_ip_configuration` blocks as documented here: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb#frontend_ip_configuration."
+  type = map(object({
+    subnet_id = string
+
+    zones = optional(list(number))
+
+    private_ip_address            = optional(string)
+    private_ip_address_allocation = optional(string, "Dynamic")
+    private_ip_address_version    = optional(string, "IPv4")
+
+    public_ip_address_id = optional(string)
+    public_ip_prefix_id  = optional(string)
+
+    gateway_load_balancer_frontend_ip_configuration_id = optional(string)
+  }))
+  default = {}
 }
 
 variable "zones" {
