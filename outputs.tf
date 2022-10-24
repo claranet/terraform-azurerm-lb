@@ -20,22 +20,22 @@ output "lb_private_ip_addresses" {
 
 output "pubip_id" {
   description = "Id of the Public IP address if any"
-  value       = join("", azurerm_public_ip.ip.*.id)
+  value       = try(azurerm_public_ip.ip["enabled"].id, null)
 }
 
 output "pubip_domain_name_label" {
   description = "Domain name label of the Public IP address if any"
-  value       = join("", compact(azurerm_public_ip.ip.*.domain_name_label))
+  value       = try(azurerm_public_ip.ip["enabled"].domain_name_label, null)
 }
 
 output "pubip_ip_address" {
   description = "IP address of the Public IP address if any"
-  value       = join("", azurerm_public_ip.ip.*.ip_address)
+  value       = try(azurerm_public_ip.ip["enabled"].ip_address, null)
 }
 
 output "pubip_fqdn" {
   description = "FQDN of the Public IP address if any"
-  value       = join("", compact(azurerm_public_ip.ip.*.fqdn))
+  value       = try(azurerm_public_ip.ip["enabled"].fqdn, null)
 }
 
 output "backend_address_pool_id" {
@@ -60,17 +60,17 @@ output "backend_address_pool_load_balancing_rules" {
 
 output "outbound_rule_id" {
   description = "Id of the default outbound rule if any"
-  value       = join("", azurerm_lb_outbound_rule.outbound.*.id)
+  value       = one(azurerm_lb_outbound_rule.outbound[*].id)
 }
 
 output "outbound_rule_name" {
   description = "Name of the default outbound rule if any"
-  value       = join("", azurerm_lb_outbound_rule.outbound.*.name)
+  value       = one(azurerm_lb_outbound_rule.outbound[*].name)
 }
 
 output "outbound_rule_allocated_outbound_ports" {
   description = "Number of allocated oubound ports of the default outbound rule if any"
-  value       = join("", azurerm_lb_outbound_rule.outbound.*.allocated_outbound_ports)
+  value       = one(azurerm_lb_outbound_rule.outbound[*].allocated_outbound_ports)
 }
 
 output "frontend_ip_configuration" {
