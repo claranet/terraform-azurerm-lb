@@ -113,22 +113,22 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| backend\_address\_pool\_id | Id of the associated default backend address pool |
-| backend\_address\_pool\_ip\_configurations | IP configurations of the associated default backend address pool |
-| backend\_address\_pool\_load\_balancing\_rules | Load balancing rules of the associated default backend address pool |
-| backend\_address\_pool\_name | Name of the associated default backend address pool |
-| frontend\_ip\_configuration | Load Balancer's frontend IP configuration as described here https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb#frontend_ip_configuration |
-| lb\_id | Id of the Load Balancer |
+| backend\_address\_pool\_id | ID of the associated default backend address pool. |
+| backend\_address\_pool\_ip\_configurations | IP configurations of the associated default backend address pool. |
+| backend\_address\_pool\_load\_balancing\_rules | Load balancing rules of the associated default backend address pool. |
+| backend\_address\_pool\_name | Name of the associated default backend address pool. |
+| frontend\_ip\_configuration | Load Balancer's frontend IP configuration as described here https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb#frontend_ip_configuration. |
+| lb\_id | ID of the Load Balancer. |
 | lb\_name | Name of the Load Balancer |
 | lb\_private\_ip\_address | Private IP address of the Load Balancer |
 | lb\_private\_ip\_addresses | Private IP addresses of the Load Balancer |
-| outbound\_rule\_allocated\_outbound\_ports | Number of allocated oubound ports of the default outbound rule if any |
-| outbound\_rule\_id | Id of the default outbound rule if any |
-| outbound\_rule\_name | Name of the default outbound rule if any |
-| pubip\_domain\_name\_label | Domain name label of the Public IP address if any |
-| pubip\_fqdn | FQDN of the Public IP address if any |
-| pubip\_id | Id of the Public IP address if any |
-| pubip\_ip\_address | IP address of the Public IP address if any |
+| outbound\_rule\_allocated\_outbound\_ports | Number of allocated oubound ports of the default outbound rule if any. |
+| outbound\_rule\_id | ID of the default outbound rule if any. |
+| outbound\_rule\_name | Name of the default outbound rule if any. |
+| pubip\_domain\_name\_label | Domain name label of the public IP address if any. |
+| pubip\_fqdn | FQDN of the public IP address if any. |
+| pubip\_id | ID of the public IP address if any. |
+| pubip\_ip\_address | IP address of the public IP address if any. |
 <!-- END_TF_DOCS -->
 ## Related documentation
 
