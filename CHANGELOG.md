@@ -1,4 +1,4 @@
-# Unreleased
+# v7.0.1 - 2022-10-28
 
 Fixed
   * AZ-883: Fix old HCL deprecated code, cleanup for latest `terraform-linters` rules
