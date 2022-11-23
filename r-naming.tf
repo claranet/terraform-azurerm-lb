@@ -1,4 +1,4 @@
-resource "azurecaf_name" "lb" {
+data "azurecaf_name" "lb" {
   name          = var.stack
   resource_type = "azurerm_lb"
   prefixes      = var.name_prefix == "" ? null : [local.name_prefix]
@@ -8,7 +8,7 @@ resource "azurecaf_name" "lb" {
   separator     = "-"
 }
 
-resource "azurecaf_name" "pubip" {
+data "azurecaf_name" "pubip" {
   name          = var.stack
   resource_type = "azurerm_public_ip"
   prefixes      = var.name_prefix == "" ? null : [local.name_prefix]
