@@ -7,6 +7,7 @@ resource "azurerm_public_ip" "ip" {
 
   sku               = var.public_ip_sku
   allocation_method = var.public_ip_allocation_method
+  domain_name_label = var.public_ip_domain_name_label
 
   zones = var.zones
 
