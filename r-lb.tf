@@ -7,7 +7,7 @@ resource "azurerm_public_ip" "ip" {
 
   sku               = var.public_ip_sku
   allocation_method = var.public_ip_allocation_method
-  domain_name_label = var.public_ip_domain_name_label
+  domain_name_label = var.public_ip_custom_domain_name_label == null ? null : coalesce(var.public_ip_custom_domain_name_label, local.lb_name)
 
   zones = var.zones
 
