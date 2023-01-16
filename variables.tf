@@ -52,6 +52,12 @@ variable "public_ip_allocation_method" {
   default     = "Static"
 }
 
+variable "public_ip_custom_domain_name_label" {
+  description = "Label for the Domain Name. Will be used to make up the FQDN. If a domain name label is specified, an A DNS record is created for the public IP in the Microsoft Azure DNS system. Defaults to Load Balancer's name, set `null` to disable."
+  type        = string
+  default     = ""
+}
+
 variable "enable_nat" {
   description = "True to enable NAT through Load Balancer outbound rules."
   type        = bool
