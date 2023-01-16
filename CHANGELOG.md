@@ -1,4 +1,4 @@
-# Unreleased
+# v7.2.0 - 2023-01-16
 
 Added
   * AZ-978: Add Public IP domain name label option
