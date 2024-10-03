@@ -101,7 +101,7 @@ No modules.
 | ip\_extra\_tags | Extra tags to add to the Public IP address. | `map(string)` | `{}` | no |
 | lb\_custom\_name | Name of the Load Balancer, generated if not set. | `string` | `""` | no |
 | lb\_extra\_tags | Extra tags to add to the Load Balancer. | `map(string)` | `{}` | no |
-| lb\_frontend\_ip\_configurations | `frontend_ip_configuration` blocks as documented here: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb#frontend_ip_configuration. | <pre>map(object({<br>    subnet_id = string<br><br>    zones = optional(list(number))<br><br>    private_ip_address            = optional(string)<br>    private_ip_address_allocation = optional(string, "Dynamic")<br>    private_ip_address_version    = optional(string, "IPv4")<br><br>    public_ip_address_id = optional(string)<br>    public_ip_prefix_id  = optional(string)<br><br>    gateway_load_balancer_frontend_ip_configuration_id = optional(string)<br>  }))</pre> | `{}` | no |
+| lb\_frontend\_ip\_configurations | `frontend_ip_configuration` blocks as documented here: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb#frontend_ip_configuration. | <pre>map(object({<br/>    subnet_id = string<br/><br/>    zones = optional(list(number))<br/><br/>    private_ip_address            = optional(string)<br/>    private_ip_address_allocation = optional(string, "Dynamic")<br/>    private_ip_address_version    = optional(string, "IPv4")<br/><br/>    public_ip_address_id = optional(string)<br/>    public_ip_prefix_id  = optional(string)<br/><br/>    gateway_load_balancer_frontend_ip_configuration_id = optional(string)<br/>  }))</pre> | `{}` | no |
 | location | Azure location. | `string` | n/a | yes |
 | location\_short | Short string for Azure location. | `string` | n/a | yes |
 | name\_prefix | Optional prefix for the generated name | `string` | `""` | no |
@@ -115,7 +115,7 @@ No modules.
 | sku\_name | The Name of the SKU used for this Load Balancer. Possible values are "Basic" and "Standard". | `string` | `"Standard"` | no |
 | stack | Project stack name | `string` | n/a | yes |
 | use\_caf\_naming | Use the Azure CAF naming provider to generate default resource name. `lb_custom_name` override this if set. Legacy default name is used if this is set to `false`. | `bool` | `true` | no |
-| zones | Specifies a list of Availability Zones in which the Public IP Address for this Load Balancer should be located. Also used as default for `frontend_ip_configuration` zones | `list(number)` | <pre>[<br>  1,<br>  2,<br>  3<br>]</pre> | no |
+| zones | Specifies a list of Availability Zones in which the Public IP Address for this Load Balancer should be located. Also used as default for `frontend_ip_configuration` zones | `list(number)` | <pre>[<br/>  1,<br/>  2,<br/>  3<br/>]</pre> | no |
 
 ## Outputs
 
