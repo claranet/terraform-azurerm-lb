@@ -1,41 +1,46 @@
-output "lb_name" {
-  description = "Name of the Load Balancer"
-  value       = azurerm_lb.lb.name
+output "resource" {
+  description = "Load Balancer resource object."
+  value       = azurerm_lb.main
 }
 
-output "lb_id" {
+output "name" {
+  description = "Name of the Load Balancer."
+  value       = azurerm_lb.main.name
+}
+
+output "id" {
   description = "ID of the Load Balancer."
-  value       = azurerm_lb.lb.id
+  value       = azurerm_lb.main.id
 }
 
-output "lb_private_ip_address" {
-  description = "Private IP address of the Load Balancer"
-  value       = azurerm_lb.lb.private_ip_address
+output "private_ip_address" {
+  description = "Private IP address of the Load Balancer."
+  value       = azurerm_lb.main.private_ip_address
 }
 
-output "lb_private_ip_addresses" {
-  description = "Private IP addresses of the Load Balancer"
-  value       = azurerm_lb.lb.private_ip_addresses
+output "private_ip_addresses" {
+  description = "Private IP addresses of the Load Balancer."
+  value       = azurerm_lb.main.private_ip_addresses
 }
 
 output "pubip_id" {
   description = "ID of the public IP address if any."
-  value       = try(azurerm_public_ip.ip["enabled"].id, null)
+  value       = one(azurerm_public_ip.ip[*].id)
 }
 
 output "pubip_domain_name_label" {
   description = "Domain name label of the public IP address if any."
-  value       = try(azurerm_public_ip.ip["enabled"].domain_name_label, null)
+  value       = one(azurerm_public_ip.ip[*].domain_name_label)
 }
 
 output "pubip_ip_address" {
   description = "IP address of the public IP address if any."
-  value       = try(azurerm_public_ip.ip["enabled"].ip_address, null)
+  value       = one(azurerm_public_ip.ip[*].ip_address)
 }
 
 output "pubip_fqdn" {
   description = "FQDN of the public IP address if any."
-  value       = try(azurerm_public_ip.ip["enabled"].fqdn, null)
+  value       = one(azurerm_public_ip.ip[*].fqdn)
 }
 
 output "backend_address_pool_id" {
@@ -75,5 +80,5 @@ output "outbound_rule_allocated_outbound_ports" {
 
 output "frontend_ip_configuration" {
   description = "Load Balancer's frontend IP configuration as described here https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb#frontend_ip_configuration."
-  value       = azurerm_lb.lb.frontend_ip_configuration
+  value       = azurerm_lb.main.frontend_ip_configuration
 }

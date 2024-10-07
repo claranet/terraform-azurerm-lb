@@ -9,27 +9,27 @@ variable "location_short" {
 }
 
 variable "client_name" {
-  description = "Client name/account used in naming"
+  description = "Client name/account used in naming."
   type        = string
 }
 
 variable "environment" {
-  description = "Project environment"
+  description = "Project environment."
   type        = string
 }
 
 variable "stack" {
-  description = "Project stack name"
+  description = "Project stack name."
   type        = string
 }
 
 variable "resource_group_name" {
-  description = "Resource group name"
+  description = "Resource group name."
   type        = string
 }
 
 variable "sku_name" {
-  description = "The Name of the SKU used for this Load Balancer. Possible values are \"Basic\" and \"Standard\"."
+  description = "The Name of the SKU used for this Load Balancer. Possible values are `Basic` and `Standard`."
   type        = string
   default     = "Standard"
 }
@@ -96,7 +96,7 @@ variable "lb_frontend_ip_configurations" {
 }
 
 variable "zones" {
-  description = "Specifies a list of Availability Zones in which the Public IP Address for this Load Balancer should be located. Also used as default for `frontend_ip_configuration` zones"
+  description = "Specifies a list of Availability Zones in which the Public IP Address for this Load Balancer should be located. Also used as default for `frontend_ip_configuration` zones."
   type        = list(number)
   default     = [1, 2, 3]
 }
