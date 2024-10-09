@@ -10,6 +10,6 @@ module "lb" {
 
   resource_group_name = module.rg.name
 
-  allocate_public_ip = true
-  enable_nat         = true
+  public_ip_allocated = true
+  nat_enabled         = true
 }

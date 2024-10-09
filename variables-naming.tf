@@ -12,13 +12,13 @@ variable "name_suffix" {
 }
 
 # Custom naming override
-variable "lb_custom_name" {
+variable "custom_name" {
   description = "Name of the Load Balancer, generated if not set."
   type        = string
   default     = ""
 }
 
-variable "lb_default_backend_pool_custom_name" {
+variable "default_backend_pool_custom_name" {
   description = "Name of the default Load Balancer backend pool, generated if not set."
   type        = string
   default     = ""

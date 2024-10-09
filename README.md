@@ -47,8 +47,8 @@ module "lb" {
 
   resource_group_name = module.rg.name
 
-  allocate_public_ip = true
-  enable_nat         = true
+  public_ip_allocated = true
+  nat_enabled         = true
 }
 ```
 
@@ -68,9 +68,9 @@ No modules.
 | Name | Type |
 |------|------|
 | [azurerm_lb.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb) | resource |
-| [azurerm_lb_backend_address_pool.default_pool](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb_backend_address_pool) | resource |
-| [azurerm_lb_outbound_rule.outbound](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb_outbound_rule) | resource |
-| [azurerm_public_ip.ip](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip) | resource |
+| [azurerm_lb_backend_address_pool.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb_backend_address_pool) | resource |
+| [azurerm_lb_outbound_rule.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb_outbound_rule) | resource |
+| [azurerm_public_ip.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip) | resource |
 | [azurecaf_name.default_pool](https://registry.terraform.io/providers/claranet/azurecaf/latest/docs/data-sources/name) | data source |
 | [azurecaf_name.lb](https://registry.terraform.io/providers/claranet/azurecaf/latest/docs/data-sources/name) | data source |
 | [azurecaf_name.pubip](https://registry.terraform.io/providers/claranet/azurecaf/latest/docs/data-sources/name) | data source |
@@ -79,24 +79,24 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| allocate\_public\_ip | True to allocate a Public IP to the Load Balancer. | `bool` | `false` | no |
 | client\_name | Client name/account used in naming. | `string` | n/a | yes |
+| custom\_name | Name of the Load Balancer, generated if not set. | `string` | `""` | no |
+| default\_backend\_pool\_custom\_name | Name of the default Load Balancer backend pool, generated if not set. | `string` | `""` | no |
 | default\_tags\_enabled | Option to enable or disable default tags. | `bool` | `true` | no |
-| enable\_nat | True to enable NAT through Load Balancer outbound rules. | `bool` | `false` | no |
 | environment | Project environment. | `string` | n/a | yes |
 | extra\_tags | Extra tags to add on all resources. | `map(string)` | `{}` | no |
+| frontend\_ip\_configurations | `frontend_ip_configuration` blocks as documented (here)[https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb#frontend_ip_configuration]. | <pre>map(object({<br/>    subnet_id = string<br/><br/>    zones = optional(list(number))<br/><br/>    private_ip_address            = optional(string)<br/>    private_ip_address_allocation = optional(string, "Dynamic")<br/>    private_ip_address_version    = optional(string, "IPv4")<br/><br/>    public_ip_address_id = optional(string)<br/>    public_ip_prefix_id  = optional(string)<br/><br/>    gateway_load_balancer_frontend_ip_configuration_id = optional(string)<br/>  }))</pre> | `{}` | no |
 | ip\_custom\_name | Name of the Public IP address, generated if not set. | `string` | `""` | no |
 | ip\_extra\_tags | Extra tags to add to the Public IP address. | `map(string)` | `{}` | no |
-| lb\_custom\_name | Name of the Load Balancer, generated if not set. | `string` | `""` | no |
-| lb\_default\_backend\_pool\_custom\_name | Name of the default Load Balancer backend pool, generated if not set. | `string` | `""` | no |
 | lb\_extra\_tags | Extra tags to add to the Load Balancer. | `map(string)` | `{}` | no |
-| lb\_frontend\_ip\_configurations | `frontend_ip_configuration` blocks as documented here: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb#frontend_ip_configuration. | <pre>map(object({<br/>    subnet_id = string<br/><br/>    zones = optional(list(number))<br/><br/>    private_ip_address            = optional(string)<br/>    private_ip_address_allocation = optional(string, "Dynamic")<br/>    private_ip_address_version    = optional(string, "IPv4")<br/><br/>    public_ip_address_id = optional(string)<br/>    public_ip_prefix_id  = optional(string)<br/><br/>    gateway_load_balancer_frontend_ip_configuration_id = optional(string)<br/>  }))</pre> | `{}` | no |
 | location | Azure location. | `string` | n/a | yes |
 | location\_short | Short string for Azure location. | `string` | n/a | yes |
 | name\_prefix | Optional prefix for the generated name. | `string` | `""` | no |
 | name\_suffix | Optional suffix for the generated name. | `string` | `""` | no |
 | nat\_allocated\_outbound\_ports | Number of allocated outbound ports for NAT. | `number` | `1024` | no |
+| nat\_enabled | True to enable NAT through Load Balancer outbound rules. | `bool` | `false` | no |
 | nat\_protocol | Transport protocol to use for NAT. | `string` | `"All"` | no |
+| public\_ip\_allocated | True to allocate a Public IP to the Load Balancer. | `bool` | `false` | no |
 | public\_ip\_allocation\_method | Allocation method for the Public IP address, can be `Static`, `Dynamic`. | `string` | `"Static"` | no |
 | public\_ip\_custom\_domain\_name\_label | Label for the Domain Name. Will be used to make up the FQDN. If a domain name label is specified, an A DNS record is created for the public IP in the Microsoft Azure DNS system. Defaults to Load Balancer's name, set `null` to disable. | `string` | `""` | no |
 | public\_ip\_sku | SKU name for the Public IP address, can be `Basic` or `Standard`. | `string` | `"Standard"` | no |
@@ -109,18 +109,21 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| backend\_address\_pool | Load Balancer's default backend address pool resource object. |
 | backend\_address\_pool\_id | ID of the associated default backend address pool. |
 | backend\_address\_pool\_ip\_configurations | IP configurations of the associated default backend address pool. |
 | backend\_address\_pool\_load\_balancing\_rules | Load balancing rules of the associated default backend address pool. |
 | backend\_address\_pool\_name | Name of the associated default backend address pool. |
-| frontend\_ip\_configuration | Load Balancer's frontend IP configuration as described here https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb#frontend_ip_configuration. |
+| frontend\_ip\_configuration | Load Balancer's frontend IP configuration as described [here](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb#frontend_ip_configuration). |
 | id | ID of the Load Balancer. |
 | name | Name of the Load Balancer. |
+| oubound\_rule | Load Balancer's default outbound rule resource object if any. |
 | outbound\_rule\_allocated\_outbound\_ports | Number of allocated oubound ports of the default outbound rule if any. |
 | outbound\_rule\_id | ID of the default outbound rule if any. |
 | outbound\_rule\_name | Name of the default outbound rule if any. |
 | private\_ip\_address | Private IP address of the Load Balancer. |
 | private\_ip\_addresses | Private IP addresses of the Load Balancer. |
+| pubip | Public IP address resource object if any. |
 | pubip\_domain\_name\_label | Domain name label of the public IP address if any. |
 | pubip\_fqdn | FQDN of the public IP address if any. |
 | pubip\_id | ID of the public IP address if any. |
