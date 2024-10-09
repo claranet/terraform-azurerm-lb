@@ -1,3 +1,26 @@
+## 8.0.0 (2024-10-09)
+
+### ⚠ BREAKING CHANGES
+
+* **AZ-1088:** AzureRM Provider v4+ and OpenTofu 1.8+
+
+### Features
+
+* **AZ-1088:** module v8 structure and updates e0ccc03
+
+### Code Refactoring
+
+* apply suggestions 176345d
+
+### Miscellaneous Chores
+
+* **deps:** update dependency opentofu to v1.8.3 6c959b8
+* **deps:** update dependency pre-commit to v4 cec7f2d
+* **deps:** update dependency pre-commit to v4.0.1 5cd0762
+* **deps:** update pre-commit hook pre-commit/pre-commit-hooks to v5 19f0b87
+* prepare for new examples structure fe59864
+* update examples structure eb1a979
+
 ## 7.3.0 (2024-10-03)
 
 ### Features
