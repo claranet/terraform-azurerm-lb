@@ -1,5 +1,5 @@
-resource "azurerm_public_ip" "ip" {
-  for_each = toset(var.allocate_public_ip ? ["enabled"] : [])
+resource "azurerm_public_ip" "main" {
+  count = var.public_ip_allocated ? 1 : 0
 
   location            = var.location
   name                = local.ip_name
@@ -7,22 +7,32 @@ resource "azurerm_public_ip" "ip" {
 
   sku               = var.public_ip_sku
   allocation_method = var.public_ip_allocation_method
-  domain_name_label = var.public_ip_custom_domain_name_label == null ? null : coalesce(var.public_ip_custom_domain_name_label, local.lb_name)
+  domain_name_label = var.public_ip_custom_domain_name_label == null ? null : coalesce(var.public_ip_custom_domain_name_label, local.name)
 
   zones = var.zones
 
   tags = merge(local.default_tags, var.extra_tags, var.ip_extra_tags)
 }
 
-resource "azurerm_lb" "lb" {
+moved {
+  from = azurerm_public_ip.ip["enabled"]
+  to   = azurerm_public_ip.main[0]
+}
+
+moved {
+  from = azurerm_lb.lb
+  to   = azurerm_lb.main
+}
+
+resource "azurerm_lb" "main" {
   location            = var.location
-  name                = local.lb_name
+  name                = local.name
   resource_group_name = var.resource_group_name
 
   sku = var.sku_name
 
   dynamic "frontend_ip_configuration" {
-    for_each = azurerm_public_ip.ip
+    for_each = azurerm_public_ip.main[*]
     content {
       name                 = local.ip_configuration_name
       public_ip_address_id = frontend_ip_configuration.value.id
@@ -30,7 +40,7 @@ resource "azurerm_lb" "lb" {
   }
 
   dynamic "frontend_ip_configuration" {
-    for_each = var.lb_frontend_ip_configurations
+    for_each = var.frontend_ip_configurations
     iterator = fipconf
 
     content {
@@ -51,22 +61,32 @@ resource "azurerm_lb" "lb" {
   tags = merge(local.default_tags, var.extra_tags, var.lb_extra_tags)
 }
 
-resource "azurerm_lb_backend_address_pool" "default_pool" {
-  loadbalancer_id = azurerm_lb.lb.id
-  name            = "defautlBackendAddressPool"
+resource "azurerm_lb_backend_address_pool" "main" {
+  loadbalancer_id = azurerm_lb.main.id
+  name            = local.default_pool_name
 }
 
-resource "azurerm_lb_outbound_rule" "outbound" {
-  count = var.enable_nat ? 1 : 0
+moved {
+  from = azurerm_lb_backend_address_pool.default_pool
+  to   = azurerm_lb_backend_address_pool.main
+}
+
+resource "azurerm_lb_outbound_rule" "main" {
+  count = var.nat_enabled ? 1 : 0
 
   name = "default"
 
-  backend_address_pool_id  = azurerm_lb_backend_address_pool.default_pool.id
-  loadbalancer_id          = azurerm_lb.lb.id
+  backend_address_pool_id  = azurerm_lb_backend_address_pool.main.id
+  loadbalancer_id          = azurerm_lb.main.id
   protocol                 = var.nat_protocol
   allocated_outbound_ports = var.nat_allocated_outbound_ports
 
   frontend_ip_configuration {
     name = local.ip_configuration_name
   }
+}
+
+moved {
+  from = azurerm_lb_outbound_rule.outbound
+  to   = azurerm_lb_outbound_rule.main
 }
