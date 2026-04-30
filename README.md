@@ -55,7 +55,7 @@ module "lb" {
 ## Providers
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | azurecaf | >= 1.2.28 |
 | azurerm | ~> 4.31 |
 
@@ -66,7 +66,7 @@ No modules.
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [azurerm_lb.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb) | resource |
 | [azurerm_lb_backend_address_pool.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb_backend_address_pool) | resource |
 | [azurerm_lb_outbound_rule.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb_outbound_rule) | resource |
@@ -78,7 +78,7 @@ No modules.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | client\_name | Client name/account used in naming. | `string` | n/a | yes |
 | custom\_name | Name of the Load Balancer, generated if not set. | `string` | `""` | no |
 | default\_backend\_pool\_custom\_name | Name of the default Load Balancer backend pool, generated if not set. | `string` | `""` | no |
@@ -108,7 +108,7 @@ No modules.
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | backend\_address\_pool | Load Balancer's default backend address pool resource object. |
 | backend\_address\_pool\_id | ID of the associated default backend address pool. |
 | backend\_address\_pool\_ip\_configurations | IP configurations of the associated default backend address pool. |
