@@ -1,6 +1,7 @@
 output "resource" {
   description = "Load Balancer resource object."
   value       = azurerm_lb.main
+  sensitive   = true
 }
 
 output "name" {
